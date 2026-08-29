@@ -1,0 +1,1750 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-07-10T04:40:34",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.3",
+    "schematic_parity": [],
+    "source": "FS10-programmer.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0850 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 1 [Net-(LED1-R)] of LED2",
+                    "pos": {
+                        "x": 151.266768,
+                        "y": 102.635
+                    },
+                    "uuid": "d4d57a02-99b2-4d50-9eee-8003b0e5a292"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0850 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 2 [+5V] of LED2",
+                    "pos": {
+                        "x": 152.536768,
+                        "y": 102.635
+                    },
+                    "uuid": "eec73dc6-9795-4bea-86d3-91e29c4628fa"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0850 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 3 [Net-(LED1-G)] of LED2",
+                    "pos": {
+                        "x": 153.806768,
+                        "y": 102.635
+                    },
+                    "uuid": "65207809-5bd9-4a7b-9264-4f74c65b405f"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0850 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 4 [Net-(LED1-B)] of LED2",
+                    "pos": {
+                        "x": 155.076768,
+                        "y": 102.635
+                    },
+                    "uuid": "c3243c83-95c4-478b-b75c-2a43d57b038e"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm)",
+            "items": [
+                {
+                    "description": "PTH pad [<no net>] of SW1",
+                    "pos": {
+                        "x": 147.0,
+                        "y": 128.55
+                    },
+                    "uuid": "5140651d-e16f-42fe-a92e-af09517bb730"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm)",
+            "items": [
+                {
+                    "description": "PTH pad [<no net>] of SW1",
+                    "pos": {
+                        "x": 151.0,
+                        "y": 128.55
+                    },
+                    "uuid": "643dfdd2-ae63-43c2-934b-86b212c58332"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint LED2",
+                    "pos": {
+                        "x": 151.266768,
+                        "y": 102.635
+                    },
+                    "uuid": "0593210b-0397-4e96-be7c-3fd5e5e89aa0"
+                },
+                {
+                    "description": "Footprint LED1",
+                    "pos": {
+                        "x": 153.0,
+                        "y": 105.9
+                    },
+                    "uuid": "25d14f31-b11e-40f1-b780-51ec0afb37a1"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Board",
+                    "pos": {
+                        "x": 120.0,
+                        "y": 65.8
+                    },
+                    "uuid": "cd772f28-9928-4a1a-9dc2-680e74c48d4e"
+                },
+                {
+                    "description": "Segment of USB1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 128.0,
+                        "y": 137.075
+                    },
+                    "uuid": "f088935c-dbce-4ceb-883a-aa208f3146dd"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Board",
+                    "pos": {
+                        "x": 120.0,
+                        "y": 65.8
+                    },
+                    "uuid": "cd772f28-9928-4a1a-9dc2-680e74c48d4e"
+                },
+                {
+                    "description": "Segment of USB1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 140.02,
+                        "y": 128.465
+                    },
+                    "uuid": "08b9cf86-c2dd-438d-8898-c9a339e20f7a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Board",
+                    "pos": {
+                        "x": 120.0,
+                        "y": 65.8
+                    },
+                    "uuid": "cd772f28-9928-4a1a-9dc2-680e74c48d4e"
+                },
+                {
+                    "description": "Segment of SW1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 145.85,
+                        "y": 133.85
+                    },
+                    "uuid": "cdb3ecae-d924-4bcb-b889-9ae505854790"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Board",
+                    "pos": {
+                        "x": 120.0,
+                        "y": 65.8
+                    },
+                    "uuid": "cd772f28-9928-4a1a-9dc2-680e74c48d4e"
+                },
+                {
+                    "description": "Segment of SW1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 152.15,
+                        "y": 136.85
+                    },
+                    "uuid": "deb71068-f97b-426a-a39f-c5ce0acb56f6"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Board",
+                    "pos": {
+                        "x": 120.0,
+                        "y": 65.8
+                    },
+                    "uuid": "cd772f28-9928-4a1a-9dc2-680e74c48d4e"
+                },
+                {
+                    "description": "Segment of J1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 157.75,
+                        "y": 136.45
+                    },
+                    "uuid": "d1ffc90f-1b7d-4d92-a03d-2e925e6c7f11"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Board",
+                    "pos": {
+                        "x": 120.0,
+                        "y": 65.8
+                    },
+                    "uuid": "cd772f28-9928-4a1a-9dc2-680e74c48d4e"
+                },
+                {
+                    "description": "Segment of J1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 166.95,
+                        "y": 127.85
+                    },
+                    "uuid": "da161dff-2eca-4032-854c-e039e50bdaec"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Padstack is questionable (PTH pad hole leaves no copper)",
+            "items": [
+                {
+                    "description": "PTH pad [<no net>] of SW1",
+                    "pos": {
+                        "x": 147.0,
+                        "y": 128.55
+                    },
+                    "uuid": "5140651d-e16f-42fe-a92e-af09517bb730"
+                }
+            ],
+            "severity": "warning",
+            "type": "padstack"
+        },
+        {
+            "description": "Padstack is questionable (PTH pad hole leaves no copper)",
+            "items": [
+                {
+                    "description": "PTH pad [<no net>] of SW1",
+                    "pos": {
+                        "x": 151.0,
+                        "y": 128.55
+                    },
+                    "uuid": "643dfdd2-ae63-43c2-934b-86b212c58332"
+                }
+            ],
+            "severity": "warning",
+            "type": "padstack"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'easyedatokicad'",
+            "items": [
+                {
+                    "description": "Footprint USB1",
+                    "pos": {
+                        "x": 134.0,
+                        "y": 124.325
+                    },
+                    "uuid": "00d12a59-2ccc-4415-b69f-101f6e14b547"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'easyedatokicad'",
+            "items": [
+                {
+                    "description": "Footprint SW1",
+                    "pos": {
+                        "x": 149.0,
+                        "y": 116.75
+                    },
+                    "uuid": "189481c5-62e6-482a-9b7d-16419c3ba1cf"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'FS10-programmer-local'",
+            "items": [
+                {
+                    "description": "Footprint CN1",
+                    "pos": {
+                        "x": 148.46,
+                        "y": 70.3
+                    },
+                    "uuid": "323e16a4-7ce3-4079-9e7c-2c7f9a2a8bb4"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0600 mm)",
+            "items": [
+                {
+                    "description": "PCB text '5V' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 124.9,
+                        "y": 68.9
+                    },
+                    "uuid": "c93f3517-bafa-41e6-8eb4-d5c3796fc805"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_thickness"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm)",
+            "items": [
+                {
+                    "description": "PCB text '5V' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 124.9,
+                        "y": 68.9
+                    },
+                    "uuid": "c93f3517-bafa-41e6-8eb4-d5c3796fc805"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0600 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'BL' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 125.0,
+                        "y": 91.9
+                    },
+                    "uuid": "47d288ca-6ead-4202-bfd5-7e2a4f06c9ea"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_thickness"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'BL' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 125.0,
+                        "y": 91.9
+                    },
+                    "uuid": "47d288ca-6ead-4202-bfd5-7e2a4f06c9ea"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0600 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'switch\n' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 169.2,
+                        "y": 75.4
+                    },
+                    "uuid": "8c83df81-3a52-4bdf-b946-174e8e906de2"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_thickness"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'switch\n' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 169.2,
+                        "y": 75.4
+                    },
+                    "uuid": "8c83df81-3a52-4bdf-b946-174e8e906de2"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'MISO' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 152.845,
+                        "y": 76.9
+                    },
+                    "uuid": "fafd4be4-0f8f-4052-b62c-996e5e4af66d"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'GND' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 127.4,
+                        "y": 75.7
+                    },
+                    "uuid": "314c117e-540c-49b2-adf5-af9f0affd446"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'SDA\n' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 127.5,
+                        "y": 87.3
+                    },
+                    "uuid": "3e803a83-2df0-4cb9-9a44-bbc854e0abd6"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'TFT SPI COLOR DISPLAY' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 125.0,
+                        "y": 74.8
+                    },
+                    "uuid": "9894b182-e761-4716-b3a8-73470cb8e78c"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'ENCODER' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 125.0,
+                        "y": 100.3
+                    },
+                    "uuid": "0ece553f-3a0f-4bd9-ab50-e88e4742850c"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "PCB text 'optional OLED I2C' on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 130.3,
+                        "y": 78.9
+                    },
+                    "uuid": "74783488-2fe2-4b63-957b-031282fb92bb"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of USB1",
+                    "pos": {
+                        "x": 134.0,
+                        "y": 125.848906
+                    },
+                    "uuid": "62162f85-8172-4721-aaf8-ff8c73235d0b"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of U3",
+                    "pos": {
+                        "x": 137.6,
+                        "y": 77.8
+                    },
+                    "uuid": "c3f58ad0-e1f4-4ae8-9dc7-eb84c3a180b4"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of RESET1",
+                    "pos": {
+                        "x": 126.125,
+                        "y": 114.7
+                    },
+                    "uuid": "ba604284-fef2-4fa3-8ccb-f1fe9901696d"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R4",
+                    "pos": {
+                        "x": 147.0,
+                        "y": 95.8
+                    },
+                    "uuid": "daf340a5-4325-4ffd-89d0-d62a6c590271"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C20",
+                    "pos": {
+                        "x": 143.0,
+                        "y": 100.45
+                    },
+                    "uuid": "aacfc076-26c4-4b4e-b5e3-97378f1dd693"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C21",
+                    "pos": {
+                        "x": 139.3,
+                        "y": 104.2
+                    },
+                    "uuid": "994a8cc3-cc5b-493c-a230-4365e59e3873"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of LED1",
+                    "pos": {
+                        "x": 153.0,
+                        "y": 103.5
+                    },
+                    "uuid": "cd89c169-a2ab-4ff4-bedb-3e10561177be"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of L1",
+                    "pos": {
+                        "x": 177.4,
+                        "y": 113.5
+                    },
+                    "uuid": "9f911d13-414a-41c5-888c-f1743b0ae0a4"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C19",
+                    "pos": {
+                        "x": 137.7,
+                        "y": 104.3
+                    },
+                    "uuid": "a875c591-dc9d-4880-b509-151794f9bdfd"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R7",
+                    "pos": {
+                        "x": 148.8,
+                        "y": 103.7
+                    },
+                    "uuid": "bc26a13d-400a-4cad-a48a-d484449e3b6a"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of ICSP1",
+                    "pos": {
+                        "x": 155.1,
+                        "y": 86.2
+                    },
+                    "uuid": "994c381d-f1c2-4151-b07a-a8608f8f89aa"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C13",
+                    "pos": {
+                        "x": 126.9,
+                        "y": 95.6
+                    },
+                    "uuid": "a3045c5b-7142-4f6c-a9e0-b937b183b668"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (SHD)",
+                    "pos": {
+                        "x": 138.3,
+                        "y": 66.9
+                    },
+                    "uuid": "17209431-9569-4e8a-89ea-18b827ad723a"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (RED)",
+                    "pos": {
+                        "x": 140.84,
+                        "y": 66.9
+                    },
+                    "uuid": "4a2a1549-cfba-4342-844d-76156a483c84"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (BLU)",
+                    "pos": {
+                        "x": 143.38,
+                        "y": 66.9
+                    },
+                    "uuid": "f74adece-a4f9-4d62-91f5-b276c8f84db3"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (PNK)",
+                    "pos": {
+                        "x": 145.92,
+                        "y": 66.9
+                    },
+                    "uuid": "960910c9-f620-44cb-9995-1c3ce0b3fbdc"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (GRY)",
+                    "pos": {
+                        "x": 148.46,
+                        "y": 66.9
+                    },
+                    "uuid": "0462576f-d7a7-4df0-ae70-8a3965b4f0cf"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (YEL)",
+                    "pos": {
+                        "x": 151.0,
+                        "y": 66.9
+                    },
+                    "uuid": "703be6fe-9479-4c56-afe2-530bdf094edd"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (GRN)",
+                    "pos": {
+                        "x": 153.54,
+                        "y": 66.9
+                    },
+                    "uuid": "ac8a64e2-1d70-4917-8db9-5fc8f74cf1c5"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (BRN)",
+                    "pos": {
+                        "x": 156.08,
+                        "y": 66.9
+                    },
+                    "uuid": "07be8b54-4664-4a63-b9da-f8fbfbd33590"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of CN1 (WHT)",
+                    "pos": {
+                        "x": 158.5,
+                        "y": 66.9
+                    },
+                    "uuid": "15ad2706-9f73-4a70-a392-5dfefc9cce93"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C8",
+                    "pos": {
+                        "x": 126.6,
+                        "y": 99.1
+                    },
+                    "uuid": "5b1deb3b-ccd1-4051-b0fb-9427e4a185ff"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R_BZ1",
+                    "pos": {
+                        "x": 158.2,
+                        "y": 103.8
+                    },
+                    "uuid": "11570555-49be-4da9-934b-8f84a7302215"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C11",
+                    "pos": {
+                        "x": 135.07,
+                        "y": 76.05
+                    },
+                    "uuid": "0f6ee33d-b0ae-4f4e-977d-563f16faa2b3"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R6",
+                    "pos": {
+                        "x": 135.4,
+                        "y": 114.3
+                    },
+                    "uuid": "f21e05c3-9cef-4669-ae66-41f92a4a9605"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of J1",
+                    "pos": {
+                        "x": 162.1,
+                        "y": 125.3
+                    },
+                    "uuid": "6891edee-6890-4ee2-b216-3a4654a04aac"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C17",
+                    "pos": {
+                        "x": 147.0,
+                        "y": 83.81
+                    },
+                    "uuid": "fad3bf8b-6c60-4f4a-937f-e04a691f0e9a"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R21",
+                    "pos": {
+                        "x": 174.705,
+                        "y": 106.4
+                    },
+                    "uuid": "452c7f20-a3db-4762-b0ec-124b15d45833"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of L2",
+                    "pos": {
+                        "x": 128.3,
+                        "y": 101.7
+                    },
+                    "uuid": "08cdd61f-097d-4fa9-99ed-ff5d8bd946bb"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C4",
+                    "pos": {
+                        "x": 162.1125,
+                        "y": 112.8
+                    },
+                    "uuid": "92bbdf15-41bb-4f64-a1c8-0ff75492c93e"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C9",
+                    "pos": {
+                        "x": 127.2,
+                        "y": 97.2
+                    },
+                    "uuid": "bc5a21cc-04e1-4276-9709-b870f5c46b21"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of D3",
+                    "pos": {
+                        "x": 132.8,
+                        "y": 104.8
+                    },
+                    "uuid": "b8b5d04b-83bb-4f43-a5fa-2bc6e2100909"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C15",
+                    "pos": {
+                        "x": 140.5,
+                        "y": 84.5
+                    },
+                    "uuid": "9fd59bf9-a8a8-46f9-a70e-fcb729383679"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C1",
+                    "pos": {
+                        "x": 165.4,
+                        "y": 108.4
+                    },
+                    "uuid": "fa3614af-b27f-4054-bce3-b0bd6360eecd"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of Q_BZ1",
+                    "pos": {
+                        "x": 161.5,
+                        "y": 96.1
+                    },
+                    "uuid": "5e1d6a5b-23e2-4f7e-ad32-7fc73fd53db3"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R5",
+                    "pos": {
+                        "x": 131.1,
+                        "y": 114.3
+                    },
+                    "uuid": "68db5b4d-5d0c-40b0-9a74-d2192e0017f9"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of TP6",
+                    "pos": {
+                        "x": 132.4,
+                        "y": 85.2
+                    },
+                    "uuid": "bf4ceda0-7066-4394-a642-005dce38d416"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C14",
+                    "pos": {
+                        "x": 135.3,
+                        "y": 79.44058
+                    },
+                    "uuid": "2eddb02d-f4c5-42ba-b691-9179957c2ebe"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C2",
+                    "pos": {
+                        "x": 172.1,
+                        "y": 106.6
+                    },
+                    "uuid": "e1269923-b2c6-4463-be60-3681a9021f70"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R_BZ2",
+                    "pos": {
+                        "x": 156.2,
+                        "y": 98.572936
+                    },
+                    "uuid": "a2eba429-a47b-4e56-85d3-a203368121a0"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C18",
+                    "pos": {
+                        "x": 143.35942,
+                        "y": 84.5
+                    },
+                    "uuid": "8098575f-d40b-4cb3-8496-3dfd5ed679d8"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of F1",
+                    "pos": {
+                        "x": 138.5,
+                        "y": 115.6
+                    },
+                    "uuid": "de195939-bf5e-4372-abe8-c2d9ef6c5258"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R8",
+                    "pos": {
+                        "x": 147.0,
+                        "y": 103.7
+                    },
+                    "uuid": "8cecde04-c2e5-4775-b488-3830ccc1002e"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R9",
+                    "pos": {
+                        "x": 160.9,
+                        "y": 119.3
+                    },
+                    "uuid": "bbfd5194-0032-4469-8aa6-1a3b7998ef18"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of D1",
+                    "pos": {
+                        "x": 176.8,
+                        "y": 120.55
+                    },
+                    "uuid": "f350b0e7-1b4c-4dc0-9889-d44cd5d1b60c"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R10",
+                    "pos": {
+                        "x": 160.9,
+                        "y": 117.1
+                    },
+                    "uuid": "d66cb376-24d6-42d5-aa2d-5cd07ab89e65"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of C16",
+                    "pos": {
+                        "x": 126.9,
+                        "y": 94.0
+                    },
+                    "uuid": "63907824-383d-43af-81bb-687ff00473c2"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of TP7",
+                    "pos": {
+                        "x": 129.1,
+                        "y": 88.5
+                    },
+                    "uuid": "bf27fec8-949d-4cde-a6b6-ea99587b1fc8"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of IC2",
+                    "pos": {
+                        "x": 168.5,
+                        "y": 106.9
+                    },
+                    "uuid": "e40b7154-dd42-4606-bfc1-6b4deacb7caa"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of BZ1",
+                    "pos": {
+                        "x": 176.6,
+                        "y": 103.5
+                    },
+                    "uuid": "1d4fd16e-089f-4ca8-b991-667bfe951cc5"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Footprint text of BZ1 (+)",
+                    "pos": {
+                        "x": 173.75,
+                        "y": 101.6
+                    },
+                    "uuid": "7b010be0-3236-4143-904a-c2e40cc2a9e1"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of TP5",
+                    "pos": {
+                        "x": 135.4,
+                        "y": 85.2
+                    },
+                    "uuid": "9cf74797-fec8-4ae2-b272-a76fe862c8f4"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R2",
+                    "pos": {
+                        "x": 141.3,
+                        "y": 109.1
+                    },
+                    "uuid": "a355731f-af0b-47a4-8826-9b2de545de97"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of J11",
+                    "pos": {
+                        "x": 123.0,
+                        "y": 94.8
+                    },
+                    "uuid": "d5243e68-4a18-4b7e-85e6-28e7b3742874"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of D2",
+                    "pos": {
+                        "x": 150.9,
+                        "y": 110.8
+                    },
+                    "uuid": "3692725f-8a3d-4402-af1f-a268e9e1ccc6"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of D4",
+                    "pos": {
+                        "x": 130.9,
+                        "y": 117.9
+                    },
+                    "uuid": "a4125c44-c285-4b0d-be20-0b23c7b6f481"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of D6",
+                    "pos": {
+                        "x": 146.25,
+                        "y": 116.05
+                    },
+                    "uuid": "f552e858-f7c4-4027-8856-6102a5fae0cf"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of R3",
+                    "pos": {
+                        "x": 141.3,
+                        "y": 107.6
+                    },
+                    "uuid": "43fbdb53-ba7c-4d3c-9b23-e93d24d8c647"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Reference field of TP4",
+                    "pos": {
+                        "x": 132.4,
+                        "y": 82.1
+                    },
+                    "uuid": "bd2eaf5a-1bc1-4acf-bf57-7b6ffad0da16"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Circle of LED1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 150.6,
+                        "y": 104.4
+                    },
+                    "uuid": "07017c67-73b8-44d9-a5b3-326c2e039380"
+                },
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "8b3faed4-d232-43a4-8bdd-089e38165022"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of LED1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 155.6,
+                        "y": 104.2
+                    },
+                    "uuid": "4b17bd1c-9435-414e-b468-33a9123354b4"
+                },
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "8b3faed4-d232-43a4-8bdd-089e38165022"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of LED1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 155.6,
+                        "y": 107.6
+                    },
+                    "uuid": "7c6037c3-c16a-4cbb-ba12-ddd0678a146c"
+                },
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "8b3faed4-d232-43a4-8bdd-089e38165022"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Segment of LED1 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 155.6,
+                        "y": 104.2
+                    },
+                    "uuid": "4b17bd1c-9435-414e-b468-33a9123354b4"
+                },
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "ce4ac8fe-229d-4494-a799-fa7db3487e55"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "Reference field of D2",
+                    "pos": {
+                        "x": 150.9,
+                        "y": 110.8
+                    },
+                    "uuid": "3692725f-8a3d-4402-af1f-a268e9e1ccc6"
+                },
+                {
+                    "description": "Segment of D2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 151.59,
+                        "y": 108.65
+                    },
+                    "uuid": "5ac3911c-6266-4c6d-bf42-52b7f2cd410f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Reference field of TP4",
+                    "pos": {
+                        "x": 132.4,
+                        "y": 82.1
+                    },
+                    "uuid": "bd2eaf5a-1bc1-4acf-bf57-7b6ffad0da16"
+                },
+                {
+                    "description": "PTH pad 1 [/GPIO_PB6] of TP4",
+                    "pos": {
+                        "x": 132.4,
+                        "y": 80.8
+                    },
+                    "uuid": "ff952d3f-7ba9-4fdc-8af9-7efc94902d4b"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Reference field of LED2",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 98.675
+                    },
+                    "uuid": "1b921284-6260-423d-b59c-b0664b0f810b"
+                },
+                {
+                    "description": "Pad 1 [GND] of C22 on Top Layer",
+                    "pos": {
+                        "x": 151.47,
+                        "y": 98.49
+                    },
+                    "uuid": "9c41f0d8-90f1-40a5-8ba6-a8a3bbb93652"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Reference field of LED1",
+                    "pos": {
+                        "x": 153.0,
+                        "y": 103.5
+                    },
+                    "uuid": "cd89c169-a2ab-4ff4-bedb-3e10561177be"
+                },
+                {
+                    "description": "PTH pad 1 [Net-(LED1-R)] of LED2",
+                    "pos": {
+                        "x": 151.266768,
+                        "y": 102.635
+                    },
+                    "uuid": "d4d57a02-99b2-4d50-9eee-8003b0e5a292"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "8b3faed4-d232-43a4-8bdd-089e38165022"
+                },
+                {
+                    "description": "Pad 1 [+5V] of LED1 on Top Layer",
+                    "pos": {
+                        "x": 154.55,
+                        "y": 105.2
+                    },
+                    "uuid": "57209703-95be-4442-889b-ebcd9b3a96ae"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "8b3faed4-d232-43a4-8bdd-089e38165022"
+                },
+                {
+                    "description": "Pad 3 [Net-(LED1-R)] of LED1 on Top Layer",
+                    "pos": {
+                        "x": 151.45,
+                        "y": 105.2
+                    },
+                    "uuid": "d5a4dd62-3566-493c-88b0-0cf9a6ee2c87"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Reference field of LED1",
+                    "pos": {
+                        "x": 153.0,
+                        "y": 103.5
+                    },
+                    "uuid": "cd89c169-a2ab-4ff4-bedb-3e10561177be"
+                },
+                {
+                    "description": "PTH pad 2 [+5V] of LED2",
+                    "pos": {
+                        "x": 152.536768,
+                        "y": 102.635
+                    },
+                    "uuid": "eec73dc6-9795-4bea-86d3-91e29c4628fa"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Reference field of LED1",
+                    "pos": {
+                        "x": 153.0,
+                        "y": 103.5
+                    },
+                    "uuid": "cd89c169-a2ab-4ff4-bedb-3e10561177be"
+                },
+                {
+                    "description": "PTH pad 3 [Net-(LED1-G)] of LED2",
+                    "pos": {
+                        "x": 153.806768,
+                        "y": 102.635
+                    },
+                    "uuid": "65207809-5bd9-4a7b-9264-4f74c65b405f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "ce4ac8fe-229d-4494-a799-fa7db3487e55"
+                },
+                {
+                    "description": "Pad 1 [+5V] of LED1 on Top Layer",
+                    "pos": {
+                        "x": 154.55,
+                        "y": 105.2
+                    },
+                    "uuid": "57209703-95be-4442-889b-ebcd9b3a96ae"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Arc of LED2 on Top Silkscreen Layer",
+                    "pos": {
+                        "x": 153.171768,
+                        "y": 102.635
+                    },
+                    "uuid": "ce4ac8fe-229d-4494-a799-fa7db3487e55"
+                },
+                {
+                    "description": "Pad 3 [Net-(LED1-R)] of LED1 on Top Layer",
+                    "pos": {
+                        "x": 151.45,
+                        "y": 105.2
+                    },
+                    "uuid": "d5a4dd62-3566-493c-88b0-0cf9a6ee2c87"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        }
+    ]
+}

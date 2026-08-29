@@ -1,0 +1,29 @@
+# OS cruft
+.DS_Store
+**/.DS_Store
+
+# KiCad autosave/backup artifacts
+**/*-backups/
+*.kicad_prl
+fp-info-cache
+*-save.pro
+
+# Internal / sensitive - not for public repo
+Assets/FS10_Financial_Summary.docx
+Assets/FS10_Financial_Summary.pdf
+hardware/FS10--Hardware-KiCad/BOM-JLCPCB-cost.xls
+
+# Not this project's own branding
+Assets/FCI-DO-brand-tag.svg
+
+# Large drafts / superseded / not ready for public view
+Assets/FS10_Assembly_Instructions_Draft.docx
+Assets/FS10_Technical_Architecture_and_Service_Manual_Draft_0.docx
+
+# Third-party copyrighted datasheet - link to it instead of redistributing
+notes/Atmel-7766-ATmega16U4-32U4_Datasheet.pdf
+
+# Redundant packaging (source gerbers/BOM already included under hardware/outputs/.../gerbers,assembly)
+hardware/outputs/*.zip
+hardware/outputs/pdf_previews/
+hardware/outputs/jlcpcb-FS10-programmer-origin-aligned-20260710/*.zip

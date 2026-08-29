@@ -1,0 +1,38 @@
+Comment,Designator,Footprint,LCSC Part #,Quantity,Manufacturer Part,Manufacturer,Description
+100nF,"C1,C2,C8,C9,C11,C16,C21",Capacitor_SMD:C_0603_1608Metric,C14663,7,CC0603KRX7R9BB104,YAGEO,100nF 50V X7R 0603 MLCC
+10uF 50V,C4,Capacitor_SMD:C_1210_3225Metric,C596319,1,CC1210KKX7R9BB106,YAGEO,10uF 50V X7R 1210 MLCC
+22uF,"C10,C25,C26",PCM_JLCPCB:C_1206,C5672,3,CL31A226KPHNNNE,Samsung Electro-Mechanics,10V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+1uF,"C13,C14,C15,C17,C18,C19",Capacitor_SMD:C_0603_1608Metric,C15849,6,CL10A105KB8NNNC,Samsung Electro-Mechanics,1uF 50V X5R 0603 MLCC
+10u,C20,Capacitor_Tantalum_SMD:CP_EIA-3528-21_Kemet-B,C2976904,1,CA45A-B-20V-10UF-K,CEC(Shenzhen Zhenhua XinYun Elec),10uF 20V Case-B 3528 tantalum capacitor
+22pF,"C22,C23",PCM_JLCPCB:C_0603,C1653,2,CL10C220JB8NNNC,Samsung Electro-Mechanics,50V 22pF C0G ±5% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+100pF,C24,PCM_JLCPCB:C_0603,C14858,1,CL10C101JB8NNNC,Samsung Electro-Mechanics,100pF 50V C0G ±5% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS
+SS34B,D1,Diode_SMD:D_SMB,C13762,1,SS34B,MDD,3A 40V SMB Schottky diode for buck 5V isolation into +5V system rail
+SMBJ28A-TR,D2,Diode_SMD:D_SMB,C96335,1,SMBJ28A-TR,STMicroelectronics,"28V standoff, 45.4V clamp, 600W unidirectional SMB TVS for 24V raw input"
+1N4148W-TP,D3,Diode_SMD:D_SOD-123,,1,1N4148W-TP,MCC,
+SP0503BAHTG,D4,Package_TO_SOT_SMD:SOT-143,C3040626,1,SP0503BAHTG,TECH PUBLIC(台舟),Polarity:Unidirectional Reverse Stand-Off Voltage (Vrwm):5.5V Clamping Voltage:14V Peak Pulse Current (Ipp):10A@8/20us Peak Pulse Power Dissipation (Ppp):150W@8/20us Voltage - Breakdown:6V Reverse Leakage Current (Ir):80nA Number of Channels:three routes
+US1A,D5,PCM_JLCPCB:D_SMA,C18199125,1,US1A,hongjiacheng,1V@1A 50ns Independent Type 1A 50V SMA(DO-214AC) Fast Recovery / High Efficiency Diodes ROHS
+SS14,D6,Diode_SMD:D_SMA,,1,SS14,,USB VBUS Schottky isolation into +5V system rail
+MF-MSMF050-2,F1,Fuse:Fuse_1812_4532Metric,C17313,1,MF-MSMF050-2,BOURNS,500mA 15V 1812 resettable PTC fuse
+AP63200WU-7,IC2,Package_TO_SOT_SMD:TSOT-23-6,C2071868,1,AP63200WU-7,Diodes Incorporated,"3.8V-32V input, adjustable 2A synchronous buck converter; feedback divider set above 5V to compensate D1 drop"
+10uH,L1,Inductor_SMD:L_Sunlord_SWPA5040S,C354610,1,CKCS5040-10uH/M,CENKER,"AP63200 buck inductor, shielded 10uH with saturation current above 2.5A"
+MH2029-300Y,L2,Inductor_SMD:L_0805_2012Metric,,1,MH2029-300Y,Bourns,
+2N7002,Q_BZ1,Package_TO_SOT_SMD:SOT-23,C28646312,1,,,Low-side MOSFET driver for 5V magnetic buzzer
+1kΩ,"R1,R14,R15",PCM_JLCPCB:R_0603,C21190,3,0603WAF1001T5E,UNI-ROYAL(Uniroyal Elec),100mW Thick Film Resistors 75V ±100ppm/°C ±1% 1kΩ 0603 Chip Resistor - Surface Mount ROHS
+100K,R2,Resistor_SMD:R_0603_1608Metric,C25803,1,0603WAF1003T5E,UNI-ROYAL(Uniroyal Elec),Resistance:100kΩ Package:0603 ±1% 100mW
+1M,"R3,R4",Resistor_SMD:R_0603_1608Metric,C22935,2,0603WAF1004T5E,UNI-ROYAL(Uniroyal Elec),Resistance:1MΩ Package:0603 ±1% 100mW
+22,"R5,R6",Resistor_SMD:R_0603_1608Metric,C23345,2,0603WAF220JT5E,UNI-ROYAL(Uniroyal Elec),Resistance:22Ω Package:0603 ±1% 100mW
+150k,R7,Resistor_SMD:R_0603_1608Metric,C22807,1,0603WAF1503T5E,UNI-ROYAL(Uniroyal Elec),Resistance:150kΩ Package:0603 ±1% 100mW
+22k,R8,Resistor_SMD:R_0603_1608Metric,C31850,1,0603WAF2202T5E,UNI-ROYAL(Uniroyal Elec),Resistance:22kΩ Package:0603 ±1% 100mW
+169K,R9,Resistor_SMD:R_0603_1608Metric,C22817,1,0603WAF1693T5E,UNI-ROYAL(Uniroyal Elec),Resistance:169kΩ Package:0603 ±1% 100mW
+30K,R10,Resistor_SMD:R_0603_1608Metric,C22984,1,0603WAF3002T5E,UNI-ROYAL(Uniroyal Elec),Resistance:30kΩ Package:0603 ±1% 100mW
+270Ω,R21,PCM_JLCPCB:R_0805,C17590,1,0805W8F2700T5E,UNI-ROYAL(Uniroyal Elec),125mW Thick Film Resistors 150V ±100ppm/°C ±1% 270Ω 0805 Chip Resistor - Surface Mount ROHS
+1k,R_BZ1,Resistor_SMD:R_0805_2012Metric,C17513,1,0805W8F1001T5E,UNI-ROYAL(Uniroyal Elec),Resistance:1kΩ Package:0805 ±1% 125mW
+100k,R_BZ2,Resistor_SMD:R_0805_2012Metric,C149504,1,0805W8F1003T5E,UNI-ROYAL(Uniroyal Elec),Resistance:100kΩ Package:0805 ±1% 125mW
+K2-1102SP-A4SC-04,SW2,FS10-programmer:Push_Hybrid_SMD_THR_12x12mm,C83214,1,K2-1102SP-A4SC-04,Korean Hroparts Elec,"12x12mm SMD-4P SPST tactile switch, 7.5mm height"
+ATMEGA32U4-XUAU,U2,Package_QFP:TQFP-44_10x10mm_P0.8mm,C44854,1,ATMEGA32U4-AU,Microchip,
+MAX232EIDR,U3,Package_SO:SOIC-16_3.9x9.9mm_P1.27mm,C273639,1,MAX232EIDR,TI(德州仪器),Type:transceiver Number of Drivers:2 Number of Receivers:2 Data Rate:250Kbps Data Rate:250Kbps Voltage - Supply:4.5V~5.5V Voltage - Supply:4.5V~5.5V charge pump:Yes Operating Temperature:-40°C~+85°C Operating Temperature:-40°C~+85°C
+X322516MLB4SI,X1,PCM_JLCPCB:OSC-SMD_4P-L3.2-W2.5-BL,C13738,1,X322516MLB4SI,Yangxing Tech,16MHz Surface Mount Crystal 9pF ±10ppm ±20ppm SMD3225-4P Crystals ROHS
+DC005,J1,Connector_BarrelJack:BarrelJack_GCT_DCJ200-10-A_Horizontal,C5280493,1,DC005,,"DC barrel jack, switched, through-hole, hand/deselect assembly as needed"
+USB-109C-B-CU,USB1,easyedatokicad:USB-B-TH_USB-109C-B-CU,C20611692,1,USB-109C-B-CU,HOOYA,USB Type-B right-angle through-hole connector
+HX KCD11-BL,SW1,easyedatokicad:SW-TH_KCD11-BL,C6917329,1,HX KCD11-BL,hanxia,"SPST rocker switch, through-hole, hand/deselect assembly as needed"
+SKHHLUA010,RESET1,Button_Switch_THT:SW_Tactile_SKHH_Angled,C139764,1,SKHHLUA010,ALPSALPINE,"Tactile Switch SPST-NO side actuated through-hole right angle, 6.2x6.2mm, 5.85mm stem, wave soldering"
