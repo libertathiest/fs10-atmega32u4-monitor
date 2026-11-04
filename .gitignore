@@ -27,3 +27,7 @@ notes/Atmel-7766-ATmega16U4-32U4_Datasheet.pdf
 hardware/outputs/*.zip
 hardware/outputs/pdf_previews/
 hardware/outputs/jlcpcb-FS10-programmer-origin-aligned-20260710/*.zip
+
+# Python bytecode from the FreeCAD build scripts
+__pycache__/
+*.pyc
