@@ -1,0 +1,260 @@
+--- FS10_ATMEGA32U4OLED_FW_2026-09-13_1935.ino
++++ FS10_ATMEGA32U4OLED_USB_FIX_2026-09-23_1241.ino
+@@ -1,6 +1,7 @@
+ // FS10 OLED bridge: stable USB CDC <-> RS232 bridge plus a compact status display.
+-// Requires the local Arduino AVR CDC.cpp patch that removes the DTR gate
+-// from Serial_::write() for CP2102-like behavior with the FS10 PC software.
++// USB mode is a transparent PC-controlled bridge; the OLED observes replies.
++// Native AVR CDC endpoint writes support PC software that does not assert DTR.
++// No local Arduino CDC.cpp patch is required.
+ 
+ #include <Adafruit_GFX.h>
+ #include <Adafruit_SH110X.h>
+@@ -9,6 +10,7 @@
+ #include <limits.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <util/atomic.h>
+ 
+ constexpr uint32_t FS10_BAUD = 9600;
+ constexpr bool DEMO_MODE = false;  // Set to false for production
+@@ -32,8 +34,6 @@
+ constexpr uint16_t STANDALONE_MEAS_MS = 500;
+ constexpr uint16_t STANDALONE_CONFIG_MS = 250;
+ constexpr uint16_t STANDALONE_CABLE_FAULT_MS = 600;
+-constexpr uint16_t USB_PRIVATE_DR_MS = 1500;
+-constexpr uint16_t USB_PRIVATE_QUIET_MS = 180;
+ constexpr uint16_t USB_PC_IDLE_MS = 5000;
+ constexpr uint8_t STANDALONE_CONFIG_MAX_PASSES = 4;
+ constexpr uint16_t OLED_POWERUP_DELAY_MS = 250;
+@@ -46,7 +46,6 @@
+ static uint32_t lastBridgeActivityMs = 0;
+ static uint32_t lastStandaloneMeasMs = 0;
+ static uint32_t lastStandaloneConfigMs = 0;
+-static uint32_t lastUsbPrivateDrMs = 0;
+ static uint32_t lastPcBridgeActivityMs = 0;
+ static uint32_t lastFs10DataMs = 0;
+ static uint32_t relayUnknownSinceMs = 0;
+@@ -58,9 +57,6 @@
+ static bool cableMissingShown = false;
+ static bool supplyMissingShown = false;
+ static bool pcIdleShown = false;
+-static bool usbPrivateReplyActive = false;
+-static bool usbPrivateReplySawData = false;
+-static bool usbSerialRefreshPending = true;
+ static bool conditionStateValid = false;
+ static bool lastUsbPresentState = false;
+ static bool lastSupplyPresentState = false;
+@@ -69,6 +65,7 @@
+ static uint8_t standaloneConfigPasses = 0;
+ static char lineBuffer[LINE_MAX];
+ static uint8_t bridgeBuffer[BRIDGE_CHUNK_MAX];
++static uint8_t usbTxPending = 0;
+ static uint8_t lineIndex = 0;
+ static uint32_t demoTickMs = 0;
+ static char flowValue[20] = "--";
+@@ -366,7 +363,9 @@
+ }
+ 
+ static bool computePercent(long value10, long min10, long max10, long *pctOut) {
+-  if (min10 == LONG_MIN || max10 == LONG_MIN || max10 == min10) return false;
++  // Replies may arrive in any order; wait for the value as well as its range.
++  if (value10 == LONG_MIN || min10 == LONG_MIN || max10 == LONG_MIN ||
++      max10 == min10) return false;
+   long span = max10 - min10;
+   long pos = value10 - min10;
+   long pct = ((pos * 100L) + (span / 2L)) / span;
+@@ -532,74 +531,74 @@
+ }
+ 
+ static bool bridgeUsbToFs10() {
+-  bool moved = false;
+   uint8_t count = 0;
+ 
+-  while (Serial.available() > 0 && count < sizeof(bridgeBuffer)) {
+-    uint8_t value = (uint8_t)Serial.read();
+-    bridgeBuffer[count++] = value;
++  // Leave incoming PC bytes queued until the UART has room. The reply buffer
++  // belongs exclusively to the other direction, including between loop calls.
++  while (count < BRIDGE_CHUNK_MAX && Serial.available() > 0 &&
++         Serial1.availableForWrite() > 0) {
++    Serial1.write((uint8_t)Serial.read());
++    ++count;
+   }
+ 
+   if (count > 0) {
+-    Serial1.write(bridgeBuffer, count);
+     lastBridgeActivityMs = millis();
+     lastPcBridgeActivityMs = lastBridgeActivityMs;
+-    moved = true;
+-  }
+-
+-  return moved;
++  }
++  return count > 0;
++}
++
++static int writeUsbAvailable(const uint8_t *data, uint8_t count) {
++  int written = 0;
++  // Arduino AVR USB_Send() can otherwise wait 250 ms for a full endpoint.
++  // Keep the space check and this small copy together so the USB SOF interrupt
++  // cannot release the bank between them. Leave one byte unused to avoid the
++  // core's extra zero-length-packet wait when a bank is filled exactly.
++  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
++    if (USBDevice.configured() && count > 0) {
++      uint8_t space = USB_SendSpace(CDC_TX);
++      if (space > 1) {
++        if (count >= space) count = space - 1;
++        written = USB_Send(CDC_TX | TRANSFER_RELEASE, data, count);
++      }
++    }
++  }
++  return written;
++}
++
++static bool flushUsbReply(bool *usbWriteFailed) {
++  if (usbTxPending == 0) return false;
++  int written = writeUsbAvailable(bridgeBuffer, usbTxPending);
++  if (written < 0) {
++    *usbWriteFailed = true;
++    return false;
++  }
++  if (written == 0) return false; // Host backpressure: retry on the next loop.
++
++  usbTxPending -= (uint8_t)written;
++  memmove(bridgeBuffer, bridgeBuffer + written, usbTxPending);
++  lastBridgeActivityMs = millis();
++  return true;
+ }
+ 
+ static bool bridgeFs10ToUsb(bool *usbWriteFailed) {
+-  bool moved = false;
++  bool moved = flushUsbReply(usbWriteFailed);
+   uint8_t count = 0;
+ 
+-  while (Serial1.available() > 0 && count < sizeof(bridgeBuffer)) {
++  while (Serial1.available() > 0 && usbTxPending < sizeof(bridgeBuffer) &&
++         count < BRIDGE_CHUNK_MAX) {
+     uint8_t value = (uint8_t)Serial1.read();
+-    watchFs10Byte((char)value);
+-    if (usbPrivateReplyActive) {
+-      if (value == '\r' || value == '\n') {
+-        if (usbPrivateReplySawData) {
+-          usbPrivateReplyActive = false;
+-          usbPrivateReplySawData = false;
+-        }
+-      } else {
+-        usbPrivateReplySawData = true;
+-      }
+-    } else {
+-      bridgeBuffer[count++] = value;
+-    }
+-  }
+-
++    bridgeBuffer[usbTxPending++] = value;
++    watchFs10Byte((char)value); // Observe every reply without changing its bytes.
++    ++count;
++  }
+   if (count > 0) {
+-    size_t written = Serial.write(bridgeBuffer, count);
+-    if (written != count) *usbWriteFailed = true;
+     lastBridgeActivityMs = millis();
+     lastFs10DataMs = lastBridgeActivityMs;
+     moved = true;
+   }
+-
++  if (flushUsbReply(usbWriteFailed)) moved = true;
+   return moved;
+-}
+-
+-static bool serviceUsbPrivatePolling() {
+-  uint32_t now = millis();
+-  if (usbPrivateReplyActive) return false;
+-  if ((uint32_t)(now - lastBridgeActivityMs) < USB_PRIVATE_QUIET_MS) return false;
+-
+-  if (usbSerialRefreshPending) {
+-    Serial1.print(F("*032"));
+-    usbSerialRefreshPending = false;
+-  } else {
+-    if ((uint32_t)(now - lastUsbPrivateDrMs) < USB_PRIVATE_DR_MS) return false;
+-    Serial1.print(F("*227"));
+-    lastUsbPrivateDrMs = now;
+-  }
+-  Serial1.write('\r');
+-  usbPrivateReplyActive = true;
+-  usbPrivateReplySawData = false;
+-  lastBridgeActivityMs = now;
+-  return true;
+ }
+ 
+ static bool readFs10Standalone() {
+@@ -850,7 +849,6 @@
+ 
+   relayUnknownSinceMs = 0;
+   if (cableMissingShown) {
+-    if (usbPresent()) usbSerialRefreshPending = true;
+     redrawMonitorScreen();
+     displayDirty = true;
+   }
+@@ -911,8 +909,7 @@
+     if (usbChanged || supplyChanged) {
+       pcIdleShown = false;
+       attachUsbGraphMessageShown = false;
+-      usbPrivateReplyActive = false;
+-      usbPrivateReplySawData = false;
++      usbTxPending = 0; // Do not carry queued replies into a new power/USB session.
+       lineIndex = 0;
+       lastBridgeActivityMs = now;
+       lastPcBridgeActivityMs = now;
+@@ -921,7 +918,6 @@
+     if (usbChanged) {
+       standaloneConfigIndex = 0;
+       standaloneConfigPasses = 0;
+-      usbSerialRefreshPending = usbNow;
+       redrawMonitorScreen();
+     } else if (supplyChanged) {
+       redrawMonitorScreen();
+@@ -1220,7 +1216,7 @@
+   display.setCursor(37, 34);
+   display.print(F("FW BUILD"));
+   display.setCursor(16, 46);
+-  display.print(F("2026-09-13 19:35"));
++  display.print(F("2026-09-23 12:41"));
+   display.display();
+   delay(STARTUP_SPLASH_MS);
+ }
+@@ -1270,6 +1266,10 @@
+   if (!displayDirty) return;
+   if ((uint32_t)(now - lastDisplayMs) < DISPLAY_TICK_MS) return;
+   if (!serialBridgeQuiet()) return;
++
++  // Prioritize pending bridge traffic over a full OLED frame transfer.
++  if (usbPresent() && (usbTxPending > 0 || Serial.available() > 0 ||
++                       Serial1.available() > 0)) return;
+ 
+   lastDisplayMs = now;
+   renderDisplay();
+@@ -1385,11 +1385,9 @@
+   bool usbWriteFailed = false;
+   bool pcToFs10 = bridgeUsbToFs10();
+   bool fs10ToPc = bridgeFs10ToUsb(&usbWriteFailed);
+-  bool pcIdleFault = false;
+-  if (!cableFault) pcIdleFault = servicePcIdleCheck();
+-  if (!pcToFs10 && !fs10ToPc && !usbWriteFailed && !cableFault && !pcIdleFault) {
+-    serviceUsbPrivatePolling();
+-  }
++  if (!cableFault) servicePcIdleCheck();
++  // The PC owns requests in USB mode. Standalone polling must not inject
++  // commands or suppress any replies while the PC is communicating.
+ 
+   if (usbWriteFailed) {
+     flashRgbLed(true, false, false, 120);
+@@ -1404,7 +1402,7 @@
+     ledUntilMs = 0;
+   }
+ 
+-  if (!cableFault && !pcIdleFault) updateDisplayIfDue();
++  if (!cableFault) updateDisplayIfDue();
+   if (!cableFault && serialBridgeQuiet()) drawSwitchStatus();
+   serviceTransitionBeep();
+ }
