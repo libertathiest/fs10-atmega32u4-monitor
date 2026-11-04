@@ -5,6 +5,7 @@
 #   ATmega32U4-Enclosure.step                  assembly: front shell, back shell
 #   ATmega32U4-Enclosure-Front_Shell.step       print face-down
 #   ATmega32U4-Enclosure-Back_Shell.step
+#   ATmega32U4-Enclosure-Window_Press_Tool.step  glue-up tool for the polycarbonate window, prints pad face down
 #   ATmega32U4-Enclosure-Board_model.step       full-detail board model (all components)
 #   ATmega32U4-Enclosure-Display_coupon.step    head of the front half only - quick display fit test
 #   ATmega32U4-Enclosure-Board_fitcheck.step    simplified board for test prints: real outline,
@@ -47,6 +48,9 @@ def write_step(shape, f):
 
 for o in parts:
     write_step(o.Shape, os.path.join(out, f"ATmega32U4-Enclosure-{o.Name}.step"))
+press = doc.getObject("Window_Press_Tool")
+if press is not None:                 # glue-up tool for the polycarbonate window, pad face down
+    write_step(press.Shape, os.path.join(out, "ATmega32U4-Enclosure-Window_Press_Tool.step"))
 board = doc.getObject("Board_Solid")
 if board is not None:                 # full-detail board, colours kept
     f = os.path.join(out, "ATmega32U4-Enclosure-Board_model.step")

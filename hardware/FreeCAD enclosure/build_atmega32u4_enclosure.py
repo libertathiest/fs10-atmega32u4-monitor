@@ -58,9 +58,9 @@ STAMP_ON = 1                          # file name + build date/time on the head 
 STAMP_SIDE = -1                       # -1 left side of the head, +1 right
 STAMP_Y = 71.5                        # centre along the head
 STAMP_Z = 15.25                       # centre height
-STAMP_LEN = 48.0                      # at most this long
-STAMP_H = 3.0                         # at most this tall
-STAMP_EMBOSS = 0.3                    # raised height (negative = engraved)
+STAMP_LEN = 54.0                      # at most this long (two lines: file name, date/time)
+STAMP_H = 9.0                         # at most this tall, both lines together
+STAMP_EMBOSS = 0.4                    # raised height (negative = engraved)
 COLOR_MODE = 2                        # 0 keep my colours, 1 standard scheme, 2 random
 FIT = 0.3
 CORNER_R = 4.0
@@ -75,7 +75,12 @@ STANDOFF_H = 6.0                      # PCB screw boss height: PCB bottom 6 mm a
 # Shared screws: the four board screws are also the case screws.  Each M3 self-tapper goes
 # from the back through a floor boss (the board rests on it), through the board's hole,
 # and into a pillar hanging from the front face that presses on the board's top.
-PCB_BOSS_D = 7.0                      # back-floor boss under the board
+PCB_BOSS_D = 9.0                      # back-floor boss under the board; the 6.2 head counterbore (3 mm deep, floor is only
+                                      # 2.5) cuts into its foot, so (D - 6.2) / 2 is all that joins it to the floor: keep >= 1.2
+PCB_FIN_N = 4                         # gusset fins around each back boss (0 = none)
+PCB_FIN_T = 1.2                       # fin thickness (three nozzle lines)
+PCB_FIN_L = 5.0                       # how far each fin reaches out along the floor from the boss
+PCB_FIN_H = 5.0                       # how far each fin climbs up the boss
 PCB_PILLAR_D = 7.0                    # front-face pillar on top of the board
 PCB_SCREW_L = 22.0                    # screw length under the head (sets the pilot depth)
 FACE_INNER_Z = 22.0                   # PCB bottom to front-face underside
@@ -100,6 +105,10 @@ DISP_GLASS_DX, DISP_GLASS_DY = 0.0, 0.0  # glass centre vs module centre
 SCREEN_X = 0.0                        # the visible screen is centred on the case
 DISP_Y0 = 49.0                        # bottom edge of the display PCB (top edge clears the M12 jam nut)
 WINDOW_MARGIN = 1.0
+DISP_CLIPS = 0                        # 1 = the snap clips below; 0 = screw pillars at the display corners (2026-10-29)
+# Display screw pillars: 2.8 mm pilot (as the SAMD51 TFT pillars), 4.0 mm outside (clear of the display frame).
+PILLAR_OD, PILLAR_PILOT_D = 4.0, 2.8
+PILLAR_PILOT_BLIND = 1.0              # pilot stops this far below the face (the screw bites from the PCB side)
 # Display snap clips: two per long edge (4 in all), placed +-SHIFT from the module centre.
 # Each is a stiff post with a gusset at its root and a ramped hook, so it flexes little and
 # is not a thin plate that peels between print layers.
@@ -123,6 +132,13 @@ WINDOW_BEVEL = 1.0                    # 45-degree bevel around the window (0 = s
 PC_T = 0.5
 PC_W, PC_H = 64.0, 40.0               # cut the sheet to this
 PC_FIT = 0.2                          # pocket clearance per side
+# Press tool for gluing the polycarbonate into its pocket: drop it into the front half (face down, display
+# area up) before the display goes in.  A flat pad the size of the sheet presses it evenly into the pocket;
+# the wide plate keeps it square between the display rails, the handle takes thumbs or a clamp.
+PRESS_ON = 1
+PRESS_PAD_INSET = 0.4                 # pad smaller than the sheet, per side (0.6 from the pocket wall)
+PRESS_PAD_T = 4.0                     # pad thickness (stiffness)
+PRESS_HANDLE_H = 14.0                 # handle bar height above the pad
 
 HEAD_HW = 42.0                        # head interior half width
 HEAD_TOP = 103.0                      # head interior top
@@ -143,6 +159,17 @@ RESET_ON = 1
 RESET_Y = -14.65                      # actuator centre along the grip
 RESET_Z = 4.0                         # actuator centre above the board's TOP surface (ALPS SKHHLUA010: 4.0 +-0.2)
 RESET_HOLE_D = 2.0
+# The plunger tip sticks out 2.2 mm past the board edge and ends only ~0.3 mm from the wall, so the
+# wall is recessed from the inside around it (RESET_CLEAR = wanted wall-to-tip gap; 0 = no recess).
+RESET_CLEAR = 1.2
+RESET_POCKET_W = 6.0                  # recess width along the grip
+RESET_POCKET_H = 5.0                  # recess height (stops at the parting line)
+RESET_BODY_H = 7.0                    # switch body height above the board's top (estimate - measure yours)
+# from the footprint's fab outline (pin 1 at local 0,0; plunger tip 5.85 toward the edge), in this frame
+RESET_TIP_X = -31.225                 # plunger tip
+RESET_BODY_X = (-27.925, -23.925)     # body, tip side to the far side
+RESET_BODY_Y = 3.75                   # body half-length along the grip, centred on RESET_Y
+RESET_PLUNGER_W = 3.3                 # plunger width and height
 # LED2 (5 mm RGB, hand-soldered): window in the face
 LED_ON = 1
 LED_X, LED_Y = 0.0, -2.59           # window centred across the face
@@ -185,7 +212,9 @@ BAT_X, BAT_Y = -25.0, 65.0             # its centre
 # 5.8 mm jam nut inside.  Hole is split by the parting line.
 MDC_HOLE_D = 15.5                      # PG9 panel hole
 MDC_X = 0.0                            # across the case (0 = centred)
-MDC_Z_OFFSET = 0.0                     # from the parting line (0 = centred on it)
+MDC_Z_OFFSET = -2.7                    # from the parting line (0 = centred on it).  -2.7 is the user's own
+# placement, measured off the M12 reference after moving it in the model (2026-11-03): the connector's centre
+# goes from z 8.00, the parting line, down to 5.30.
 MDC_NUT_AF = 20.0                      # inside jam nut across flats - check yours
 MDC_DEPTH_IN = 20.0                    # connector body depth behind the wall (approx.)
 
@@ -258,6 +287,8 @@ PARAMS = [
     ("CORNER_R", "outside corner radius"), ("EDGE_GAP", "board edge to wall (sides)"),
     ("BOARD_END_GAP", "board connector edge to bottom wall (connectors go through the wall)"),
     ("STANDOFF_H", "PCB screw boss height: PCB bottom above the floor"),
+    ("PCB_FIN_N", "gusset fins around each back boss, PCB and case-screw bosses (0 = none)"), ("PCB_FIN_T", "boss fin thickness"),
+    ("PCB_FIN_L", "boss fin reach along the floor"), ("PCB_FIN_H", "boss fin height up the boss"),
     ("PCB_BOSS_D", "back-floor boss diameter under the board"), ("PCB_PILLAR_D", "front pillar diameter on the board"),
     ("PCB_SCREW_L", "shared screw length under the head (sets the pilot depth)"),
     ("FACE_INNER_Z", "PCB bottom to underside of the front face"),
@@ -286,6 +317,8 @@ PARAMS = [
     ("HDR_FROM_TOP", "top header pin row from the module top edge"),
     ("PC_T", "polycarbonate sheet thickness"), ("PC_W", "polycarbonate sheet width"),
     ("PC_H", "polycarbonate sheet height"), ("PC_FIT", "sheet pocket clearance"),
+    ("PRESS_ON", "window press tool (1 on, 0 off)"), ("PRESS_PAD_INSET", "press pad smaller than the sheet, per side"),
+    ("PRESS_PAD_T", "press pad thickness"), ("PRESS_HANDLE_H", "press tool handle height"),
     ("HEAD_HW", "head inside half-width"), ("HEAD_TOP", "head inside top"),
     ("FLARE_Y0", "grip starts to flare"), ("FLARE_Y1", "flare reaches head width"),
     ("BOSS_D", "screw boss diameter"), ("PILOT_D", "screw pilot hole (front half)"),
@@ -294,6 +327,9 @@ PARAMS = [
     ("RESET_ON", "reset pinhole in the left wall (1 on, 0 off)"),
     ("RESET_Y", "reset pinhole along the grip"), ("RESET_Z", "reset pinhole height above the board's top surface"),
     ("RESET_HOLE_D", "reset pinhole diameter"),
+    ("RESET_CLEAR", "wall-to-plunger gap at RESET1 (wall is recessed from inside; 0 = no recess)"),
+    ("RESET_POCKET_W", "recess width along the grip"), ("RESET_POCKET_H", "recess height"),
+    ("RESET_BODY_H", "reset switch body height above the board (reference model)"),
     ("LED_ON", "LED window in the face (1 on, 0 off)"), ("LED_HOLE_D", "LED window diameter"),
     ("LED_X", "LED window across (smaller = further left, seen from the front)"),
     ("LED_Y", "LED window along the case (larger = toward the display)"),
@@ -362,7 +398,8 @@ for r in range(2, 400):
             sheet.clear(f"{col}{r}")
     else:
         rows[name] = r
-OBSOLETE = ("EAR_Y", "EAR_D", "PCB_PILOT_D",
+OBSOLETE = ("PRESS_PAD_H", "PRESS_PLATE_T", "PRESS_PLATE_CLEAR", "PRESS_PLATE_SHORT",
+            "EAR_Y", "EAR_D", "PCB_PILOT_D",
             "AUX_NUT_AF", "AUX_BODY_W", "AUX_BODY_H", "AUX_DEPTH_IN",
             "KEY_X", "KEY_Z_OFFSET", "KEY_CUT_W", "KEY_CUT_H", "KEY_PANEL_T", "KEY_DEPTH",
             # no knob or button on this unit
@@ -376,10 +413,13 @@ for name in OBSOLETE:                 # rows from an older version of this scrip
         r = rows.pop(name)
         for col in "ABC":
             sheet.clear(f"{col}{r}")
-CHANGED = {"DISP_W": ((72.0, 63.0), 70.0), "DISP_H": ((43.0, 42.4), 48.0), "PC_W": ((62.0,), 64.0),
+CHANGED = {"MDC_Z_OFFSET": ((0.0,), -2.7),   # the user's placement, 2026-11-03
+           "DISP_W": ((72.0, 63.0), 70.0), "DISP_H": ((43.0, 42.4), 48.0), "PC_W": ((62.0,), 64.0),
            "CLIP_TOP_SHIFT": ((-15.0, -12.0), 16.0), "CLIP_BOT_SHIFT": ((12.0,), 18.0),
            "HDR_X": ((0.0,), -31.6), "DISP_GLASS_T": ((2.3,), 2.6), "DISP_AA_OFFSET_Y": ((0.0,), 2.56),
            "DISP_Y0": ((50.0,), 49.0),
+           "PCB_BOSS_D": ((7.0,), 9.0),
+           "STAMP_LEN": ((48.0,), 54.0), "STAMP_H": ((3.0,), 9.0), "STAMP_EMBOSS": ((0.3,), 0.4),
            "RESET_Y": ((-16.9,), -14.65), "RESET_Z": ((3.4, 5.6), 4.0),
            "PILOT_D": ((2.5,), 2.7), "PCB_SCREW_L": ((6.0,), 22.0),
            "BOSS_INSET": ((3.5,), 3.3)}   # earlier defaults -> new (measured 70 x 48 OLED)
@@ -584,6 +624,14 @@ outer = rounded_outer()
 shell = outer.cut(prism(inner_face, Z_IN_BOT, Z_IN_TOP))
 for x, y in HEAD_BOSSES:
     shell = shell.fuse(cyl(x, y, Z_OUT_BOT, Z_OUT_TOP, BOSS_D))
+    sx = 1 if x > 0 else -1
+    # the round boss only just touches the flat wall, leaving a thin wedge of air on both sides of the touch
+    # point (it prints as a hairline slit and the post looks loose): web it solid out to the wall
+    web = box(x, y - BOSS_D / 2, Z_OUT_BOT, sx * (HEAD_HW + WALL), y + BOSS_D / 2, Z_OUT_TOP)
+    shell = shell.fuse(web.common(outer))
+    if y > HEAD_TOP - BOSS_D:         # corner boss: the rounded corner leaves a crescent void too, fill it out to the wall
+        fill = box(x, y, Z_OUT_BOT, sx * (HEAD_HW + WALL), HEAD_TOP + WALL, Z_OUT_TOP)
+        shell = shell.fuse(fill.common(outer))
 for name, c in cutters:
     shell = shell.cut(c)
 # M12 field connector hole, split by the parting line
@@ -605,6 +653,10 @@ PCB_TOP = max((x for x in board_shape.Solids if abs(x.BoundBox.ZLength - 1.55) <
 reset_z = PCB_TOP + RESET_Z
 if RESET_ON:                           # paper-clip hole through the left wall at RESET1
     shell = shell.cut(Part.makeCylinder(RESET_HOLE_D / 2, WALL + 6, V(-(gx + WALL + 3), RESET_Y, reset_z), V(1, 0, 0)))
+    reset_depth = min(max(0.0, RESET_CLEAR - (RESET_TIP_X + gx)), WALL - 1.2)   # leave >= 1.2 mm of wall
+    if reset_depth > 0:                # recess the inside of the wall so the plunger tip clears it
+        shell = shell.cut(box(-(gx + reset_depth), RESET_Y - RESET_POCKET_W / 2, reset_z - RESET_POCKET_H / 2,
+                              -gx + 0.01, RESET_Y + RESET_POCKET_W / 2, min(reset_z + RESET_POCKET_H / 2, SPLIT_Z)))
 aux_seat = y_wall_in + max(0.0, WALL - AUX_PANEL_T)        # where the flange sits
 if AUX_ON and aux_seat > y_wall_in:
     shell = shell.cut(ycyl(AUX_X, aux_z, y_wall_in - 1, aux_seat, AUX_SPOT_D))
@@ -612,8 +664,29 @@ if AUX_ON and aux_seat > y_wall_in:
 back = shell.common(box(-200, -200, Z_OUT_BOT - 1, 200, 200, SPLIT_Z))
 front = shell.common(box(-200, -200, SPLIT_Z, 200, 200, Z_OUT_TOP + 1))
 
+def boss_fins(x, y, boss_d, room):
+    """Gusset fins around a back boss: they stand on the floor and climb the boss, so it is tied to the floor
+    outside the head counterbore (which cuts away most of its own foot).  Clipped to the cavity 'room'."""
+    rb, zb = boss_d / 2 - 0.5, Z_IN_BOT - 0.5
+    tri = Part.Face(Part.makePolygon([V(rb, 0, zb), V(rb + PCB_FIN_L + 0.5, 0, zb),
+                                      V(rb, 0, zb + PCB_FIN_H + 0.5), V(rb, 0, zb)]))
+    fin0 = tri.extrude(V(0, PCB_FIN_T, 0))
+    fin0.translate(V(0, -PCB_FIN_T / 2, 0))
+    fins = []
+    for k in range(int(PCB_FIN_N)):
+        fin = fin0.copy()
+        fin.rotate(V(0, 0, 0), V(0, 0, 1), 45.0 + k * 360.0 / PCB_FIN_N)
+        fin.translate(V(x, y, 0))
+        fins.append(fin.common(room))
+    return fins
+
+
+head_room = prism(inner_face, Z_IN_BOT - 1, SPLIT_Z)
 # screws: clearance + counterbore in the back, pilot in the front
 for x, y in HEAD_BOSSES:
+    if PCB_FIN_N > 0 and PCB_FIN_T > 0:
+        for fin in boss_fins(x, y, BOSS_D, head_room):
+            back = back.fuse(fin)
     back = back.cut(cyl(x, y, Z_OUT_BOT - 1, SPLIT_Z + 1, CLEAR_D))
     back = back.cut(cyl(x, y, Z_OUT_BOT - 1, Z_OUT_BOT + 3.0, HEAD_D))
     front = front.cut(cyl(x, y, SPLIT_Z - 1, Z_IN_TOP - 1.0, PILOT_D))
@@ -631,6 +704,9 @@ for i, (x, y) in enumerate(HOLES):
         msg = f"WARNING: shared screw H{i + 1} boss/pillar runs into the wall - check PCB_BOSS_D / PCB_PILLAR_D\n"
         print(msg, end=""); App.Console.PrintWarning(msg)
     back = back.fuse(bs.common(cavity))
+    if PCB_FIN_N > 0 and PCB_FIN_T > 0:
+        for fin in boss_fins(x, y, PCB_BOSS_D, cavity):
+            back = back.fuse(fin)
     back = back.cut(cyl(x, y, Z_OUT_BOT - 1, 0.5, CLEAR_D))
     back = back.cut(cyl(x, y, Z_OUT_BOT - 1, Z_OUT_BOT + 3.0, HEAD_D))
     front = front.fuse(pl)
@@ -733,12 +809,21 @@ def clip(cx_, oy, sy):
     return Part.Face(wire).extrude(V(CLIP_W, 0, 0))
 
 
-for cy, sy, shift in ((dy0, -1, CLIP_BOT_SHIFT), (dy1, 1, CLIP_TOP_SHIFT)):   # off the FPC / the M12
-    oy = cy + sy * FIT
-    for sx in (-1, 1):
-        rails.append(clip(dcx + sx * abs(shift), oy, sy))
+if DISP_CLIPS:                          # snap clips (the old display hold)
+    for cy, sy, shift in ((dy0, -1, CLIP_BOT_SHIFT), (dy1, 1, CLIP_TOP_SHIFT)):   # off the FPC / the M12
+        oy = cy + sy * FIT
+        for sx in (-1, 1):
+            rails.append(clip(dcx + sx * abs(shift), oy, sy))
 for r in rails:
     front = front.fuse(r)
+# screw pillars: one at each PCB corner hole, hanging from the face onto the display PCB front.
+# The M3 screw comes from the back through the PCB hole and bites into the pilot from below.
+zf_disp = Z_IN_TOP - DISP_GLASS_T       # display PCB front
+for sx in (-1, 1):
+    for sy in (-1, 1):
+        px, py = dcx + sx * (DISP_W / 2 - 2.5), (dy0 + dy1) / 2 + sy * (DISP_H / 2 - 2.5)
+        front = front.fuse(cyl(px, py, zf_disp, Z_IN_TOP + 0.01, PILLAR_OD))
+        front = front.cut(cyl(px, py, zf_disp - 0.01, Z_IN_TOP - PILLAR_PILOT_BLIND, PILLAR_PILOT_D))
 front = front.cut(window)
 pc_pocket = box(aa_cx - PC_W / 2 - PC_FIT, aa_cy - PC_H / 2 - PC_FIT, Z_IN_TOP - 0.01,
                 aa_cx + PC_W / 2 + PC_FIT, aa_cy + PC_H / 2 + PC_FIT, Z_IN_TOP + PC_T + 0.1)
@@ -750,6 +835,21 @@ hx, hy = dcx + HDR_TOP_X, dy1 - HDR_FROM_TOP     # top-centre pads: same pocket,
 front = front.cut(box(hx - HDR_POCKET_L / 2, hy - HDR_POCKET_W / 2, Z_IN_TOP - 1,
                       hx + HDR_POCKET_L / 2, hy + HDR_POCKET_W / 2, Z_IN_TOP + HDR_POCKET_D))
 pc_sheet = box(aa_cx - PC_W / 2, aa_cy - PC_H / 2, Z_IN_TOP, aa_cx + PC_W / 2, aa_cy + PC_H / 2, Z_IN_TOP + PC_T)
+
+# window press tool, first in place (pad on the sheet's inner side, sheet pushed up to the pocket roof)
+dmy = (dy0 + dy1) / 2
+z_pad = Z_IN_TOP + (PC_T + 0.1) - PC_T          # sheet underside once it sits against the pocket roof
+z_back = z_pad - PRESS_PAD_T
+px, py = PC_W / 2 - PRESS_PAD_INSET, PC_H / 2 - PRESS_PAD_INSET
+press = box(aa_cx - px, aa_cy - py, z_back, aa_cx + px, aa_cy + py, z_pad)          # the pad is the whole tool body
+press = press.fuse(box(aa_cx - 28.0, aa_cy - 6.0, z_back - PRESS_HANDLE_H, aa_cx + 28.0, aa_cy + 6.0, z_back + 0.01))
+press = press.removeSplitter()
+if press.common(front).Volume > 0.01:
+    msg = "WARNING: window press tool collides with the front half - check PRESS_PAD_INSET\n"
+    print(msg, end=""); App.Console.PrintWarning(msg)
+press_print = press.copy()                       # for printing: pad face down on the bed, handle up
+press_print.rotate(V(0, 0, 0), V(1, 0, 0), 180)
+press_print.translate(V(110.0 - aa_cx, 50.0 + aa_cy, z_pad))
 
 # other front-face holes
 if LED_ON:
@@ -840,9 +940,10 @@ if NAME_ON and abs(NAME_EMBOSS) > 0.01 and have_font:
 if STAMP_ON and abs(STAMP_EMBOSS) > 0.01 and have_font:
     import datetime
     fname = os.path.splitext(os.path.basename(doc.FileName or OUT_FCSTD))[0]
-    stamp_text = f"{fname}  {datetime.datetime.now():%Y-%m-%d %H:%M}"
+    stamp_lines = [fname, f"{datetime.datetime.now():%Y-%m-%d %H:%M}"]
+    stamp_text = "  ".join(stamp_lines)
     side = 1 if STAMP_SIDE >= 0 else -1
-    stamp = side_text([stamp_text], 1.0, side, HEAD_HW + WALL, STAMP_Y, STAMP_Z,
+    stamp = side_text(stamp_lines, 1.0, side, HEAD_HW + WALL, STAMP_Y, STAMP_Z,
                       STAMP_LEN, STAMP_H, STAMP_EMBOSS,
                       ((FLARE_Y1 + CORNER_R, HEAD_TOP - CORNER_R), z_fit), "build stamp")
     front = front.fuse(stamp) if STAMP_EMBOSS > 0 else front.cut(stamp)
@@ -1182,6 +1283,13 @@ if ENC_ON:
     o_knob = add("Encoder_Knob_reference", knob, (0.13, 0.13, 0.15))
 o_pc = add("PC_Window_reference", pc_sheet, (0.85, 0.95, 1.0), 60)
 o_mdc = add("M12_Connector_reference", mdc, (0.75, 0.75, 0.78))
+if PRESS_ON:
+    o_press = add("Window_Press_Tool", press_print, (0.2, 0.6, 0.9))      # lies beside the case, ready to print
+if RESET_ON:                          # RESET1 (ALPS SKHHLUA010): body on the board, plunger toward the left wall
+    rst = box(RESET_BODY_X[0], RESET_Y - RESET_BODY_Y, PCB_TOP, RESET_BODY_X[1], RESET_Y + RESET_BODY_Y, PCB_TOP + RESET_BODY_H)
+    rst = rst.fuse(box(RESET_TIP_X, RESET_Y - RESET_PLUNGER_W / 2, reset_z - RESET_PLUNGER_W / 2,
+                       RESET_BODY_X[0] + 0.01, RESET_Y + RESET_PLUNGER_W / 2, reset_z + RESET_PLUNGER_W / 2))
+    o_rst = add("Reset_Switch_reference", rst, (0.15, 0.15, 0.17))
 if AUX_ON:
     o_aux = add("Audio_Jack_reference", aux, (0.15, 0.15, 0.15))
 if doc.getObject("RJ12_Keystone_reference") is not None:      # replaced by the 623K jack
